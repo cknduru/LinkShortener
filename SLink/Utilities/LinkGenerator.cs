@@ -9,10 +9,10 @@ namespace SLink.Utilities
     {
         static readonly List<ResolvedURL> _fakedb = new List<ResolvedURL>();
 
-        String GenerateRandomURL()
+        ResolvedURL GenerateRandomURL(String resolvedUrl)
         {
             // begin with server address
-            String randomUrl = Constants.SERVER_ADDRESS;
+            String randomUrl = "";
             
             // generate a random hex string of fixed length
             for (int i = 0; i < Constants.RANDOM_LINK_LENGTH; i++)
@@ -21,7 +21,7 @@ namespace SLink.Utilities
             }
 
 
-            return randomUrl;
+            return new ResolvedURL(randomUrl, Constants.SERVER_ADDRESS + randomUrl, resolvedUrl);
         }
 
         public ResolvedURL ResolveURL(String unresolved_url)
@@ -38,12 +38,12 @@ namespace SLink.Utilities
             throw new System.ArgumentException("Random URL was not valid");
         }
 
-        public String AddURL(String url)
+        public ResolvedURL AddURL(String url)
         {
-            String randomUrl = GenerateRandomURL();
-            _fakedb.Add(new ResolvedURL(url, randomUrl));
+            ResolvedURL resolvedUrl = GenerateRandomURL(url);
+            _fakedb.Add(resolvedUrl);
 
-            return randomUrl;
+            return resolvedUrl;
         }
     }
 }

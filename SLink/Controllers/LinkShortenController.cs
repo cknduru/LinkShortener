@@ -25,7 +25,7 @@ namespace SLink.Controllers
             } catch (System.ArgumentException ex)
             {
                 Console.WriteLine(ex.Message);
-                return new ResolvedURL(ex.Message, ex.Message);
+                return new ResolvedURL(ex.Message, null, null);
             }
         }
 
@@ -34,10 +34,11 @@ namespace SLink.Controllers
         {
             using (var streamReader = new HttpRequestStreamReader(Request.Body, System.Text.Encoding.UTF8))
             {
+                // deserialize JSON
                 URLContainer urlObj = JsonConvert.DeserializeObject<URLContainer>(streamReader.ReadToEnd());
-                String randomUrl = _lg.AddURL(urlObj.url);
+                ResolvedURL randomUrl = _lg.AddURL(urlObj.url);
 
-                return new ResolvedURL(urlObj.url, randomUrl);
+                return randomUrl;
             }
         }
     }

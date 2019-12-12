@@ -13,7 +13,7 @@ The REST API returns something like the following:
 
 {
     "unresolved_url": "129A79D473",
-    "full_unresolved_url": "https://localhost:44347/129A79D473",
+    "full_unresolved_url": "https://localhost:44347/redirect/129A79D473",
     "resolved_url": "www.google.com"
 }
 
@@ -22,7 +22,7 @@ The REST API resturns something like the following:
 
 {
     "unresolved_url": "129A79D473",
-    "full_unresolved_url": "https://localhost:44347/129A79D473",
+    "full_unresolved_url": "https://localhost:44347/redirect/129A79D473",
     "resolved_url": "www.google.com"
 }
 

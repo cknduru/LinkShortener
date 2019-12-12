@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.WebUtilities;
+using ShortenLink.Utilities;
 using SLink.Model;
 
 namespace SLink.Utilities
@@ -13,7 +11,17 @@ namespace SLink.Utilities
 
         String GenerateRandomURL()
         {
-            return "K3OFMA9V";
+            // begin with server address
+            String randomUrl = Constants.SERVER_ADDRESS;
+            
+            // generate a random hex string of fixed length
+            for (int i = 0; i < Constants.RANDOM_LINK_LENGTH; i++)
+            {
+                randomUrl += new Random().Next(0, 16).ToString("X");
+            }
+
+
+            return randomUrl;
         }
 
         public ResolvedURL ResolveURL(String unresolved_url)
@@ -30,9 +38,12 @@ namespace SLink.Utilities
             throw new System.ArgumentException("Random URL was not valid");
         }
 
-        public void AddURL(String url)
+        public String AddURL(String url)
         {
-            _fakedb.Add(new ResolvedURL(url, GenerateRandomURL()));
+            String randomUrl = GenerateRandomURL();
+            _fakedb.Add(new ResolvedURL(url, randomUrl));
+
+            return randomUrl;
         }
     }
 }

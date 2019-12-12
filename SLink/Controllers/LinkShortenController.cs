@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using SLink.Utilities;
 using SLink.Model;
 using Microsoft.AspNetCore.WebUtilities;
+using ShortenLink.Model;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace SLink.Controllers
 {
@@ -14,12 +17,7 @@ namespace SLink.Controllers
     [ApiController]
     public class LinkShortenController : ControllerBase
     {
-        readonly LinkGenerator _lg;
-
-        public LinkShortenController()
-        {
-            _lg = new LinkGenerator();
-        }
+        readonly LinkGenerator _lg = new LinkGenerator();
 
         [HttpGet("resolve/{url}")]
         public ActionResult<ResolvedURL> Get(String url)
@@ -37,16 +35,16 @@ namespace SLink.Controllers
         }
 
         [HttpPost("submit")]
-        public  IActionResult Submit()
+        public IActionResult Submit()
         {
             using (var streamReader = new HttpRequestStreamReader(Request.Body, System.Text.Encoding.UTF8))
             {
-                using (var jsonReader = new Newtonsoft.Json.JsonTextReader(streamReader))
-                {
-                    Console.WriteLine("submit received URL:{0}", jsonReader.Value);
-                    _lg.AddURL(jsonReader.Value.ToString());
-                    return Accepted();
-                }
+                //todo: make this async
+                URLContainer url = JsonConvert.DeserializeObject<URLContainer>(streamReader.ReadToEnd());
+
+                Console.WriteLine("submit received URL:{0}", url.url);
+                _lg.AddURL(url.url);
+                return Accepted();
             }
         }
     }

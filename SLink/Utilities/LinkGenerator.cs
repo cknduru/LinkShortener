@@ -9,12 +9,7 @@ namespace SLink.Utilities
 {
     public class LinkGenerator
     {
-        readonly List<ResolvedURL> _fakedb;
-
-        public LinkGenerator()
-        {
-            _fakedb = new List<ResolvedURL>();
-        }
+        static readonly List<ResolvedURL> _fakedb = new List<ResolvedURL>();
 
         String GenerateRandomURL()
         {

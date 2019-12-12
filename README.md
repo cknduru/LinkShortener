@@ -17,8 +17,6 @@ The REST API returns something like the following:
     "resolved_url": "www.google.com"
 }
 
-
-
 To resolve a shortened URL send a GET request to https://localhost:44347/api/linkshorten/resolve/<unresolved_url>, e.g. https://localhost:44347/api/linkshorten/resolve/129A79D473
 The REST API resturns something like the following:
 
@@ -27,3 +25,5 @@ The REST API resturns something like the following:
     "full_unresolved_url": "https://localhost:44347/129A79D473",
     "resolved_url": "www.google.com"
 }
+
+After a URL has been shortened, it can be used by navigating to the full_unresolved_url from previously, in your browser. This should redirect you to the correct page

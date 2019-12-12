@@ -41,5 +41,13 @@ namespace SLink.Controllers
                 return randomUrl;
             }
         }
+
+        [HttpGet("/{unresolved_url}")]
+        public IActionResult RedirectToResolvedURL(String unresolved_url)
+        {
+            // redirect user to resolved URL
+            ResolvedURL resolvedURL = _lg.ResolveURL(unresolved_url);
+            return Redirect(resolvedURL.resolved_url);
+        }
     }
 }

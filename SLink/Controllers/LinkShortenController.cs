@@ -13,10 +13,8 @@ namespace SLink.Controllers
     public class LinkShortenController : ControllerBase
     {
         [HttpGet("resolve/{url}")]
-        public ActionResult<ResolvedURL> Get(String url)
+        public ActionResult<ResolvedURL> Resolve(String url)
         {
-            Console.WriteLine("resolve received URL: {0}", url);
-
             try
             {
                 return LinkGenerator.ResolveURL(url);

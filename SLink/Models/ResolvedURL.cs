@@ -7,14 +7,14 @@ namespace SLink.Model
 {
     public class ResolvedURL
     {
-        public String unresolved_url { get; set; }
-        public String full_unresolved_url { get; set; }
+        public String random_identifier { get; set; }
+        public String short_url { get; set; }
         public String resolved_url { get; set; }
 
-        public ResolvedURL(String unresolved, String full_unresolved, String resolved)
+        public ResolvedURL(String randomIdentifier, String shortUrl, String resolved)
         {
-            unresolved_url = unresolved;
-            full_unresolved_url = full_unresolved;
+            random_identifier = randomIdentifier;
+            short_url = shortUrl;
             resolved_url = resolved;
         }
     }

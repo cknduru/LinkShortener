@@ -13,6 +13,7 @@ namespace ShortenLink.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
+            // display front page, this returns the view matching MainPage/Index.cshtml
             return View();
         }
 

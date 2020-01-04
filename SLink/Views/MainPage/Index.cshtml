@@ -21,6 +21,28 @@
 </head>
 
 <body>
+    <script>
+        function PostLongURL()
+        {
+            // get long URL from user
+            var longUrl = document.getElementById("inputLink").value
+
+            // send POST request to obtain shortened URL
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/api/linkshorten/submit", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                url: longUrl
+            }));
+
+            // set onload listener to display shortened URL to user when query data is ready
+            xhr.onload = function () {
+                var data = JSON.parse(this.responseText);
+                document.getElementById("outputLink").value = data['short_url'];
+
+            }
+        }
+    </script>
 
     <div class="container">
         <center>
@@ -28,10 +50,10 @@
         </center>
         <form class="form-signin">
             <label for="inputLink" class="sr-only">Link</label>
-            <input type="link" id="inputLink" class="form-control" placeholder="Link" required autofocus>
+            <input type="text" id="inputLink" class="form-control" placeholder="Link" required autofocus>
             <label for="outputLink" class="sr-only">Shortened link</label>
-            <input type="password" id="outputLink" class="form-control" readonly="readonly" placeholder="Shortened link" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Shorten</button>
+            <input type="text" id="outputLink" class="form-control" placeholder="Link" required autofocus>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="PostLongURL()">Shorten</button>
         </form>
 
     </div> <!-- /container -->

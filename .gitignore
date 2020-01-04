@@ -1,2 +1,6 @@
 SLink/obj/*
 SLink/bin/Debug/*
+**/.suo
+**/storage.ide-shm
+**/storage.ide-wal
+**/storage.ide

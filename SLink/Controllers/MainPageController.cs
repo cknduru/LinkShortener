@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SLink.Model;
+using SLink.Utilities;
 
 namespace ShortenLink.Controllers
 {
@@ -12,6 +14,14 @@ namespace ShortenLink.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet("/web/{unresolved_url}")]
+        public IActionResult RedirectToResolvedURL(String unresolved_url)
+        {
+            // redirect user to resolved URL
+            ResolvedURL resolvedURL = LinkGenerator.ResolveURL(unresolved_url);
+            return Redirect(resolvedURL.resolved_url);
         }
     }
 }

@@ -12,8 +12,6 @@ namespace SLink.Controllers
     [ApiController]
     public class LinkShortenController : ControllerBase
     {
-        readonly LinkGenerator _lg = new LinkGenerator();
-
         [HttpGet("resolve/{url}")]
         public ActionResult<ResolvedURL> Get(String url)
         {
@@ -21,7 +19,7 @@ namespace SLink.Controllers
 
             try
             {
-                return _lg.ResolveURL(url);
+                return LinkGenerator.ResolveURL(url);
             } catch (System.ArgumentException ex)
             {
                 Console.WriteLine(ex.Message);
@@ -36,18 +34,10 @@ namespace SLink.Controllers
             {
                 // deserialize JSON
                 URLContainer urlObj = JsonConvert.DeserializeObject<URLContainer>(streamReader.ReadToEnd());
-                ResolvedURL randomUrl = _lg.AddURL(urlObj.url);
+                ResolvedURL randomUrl = LinkGenerator.AddURL(urlObj.url);
 
                 return randomUrl;
             }
-        }
-
-        [HttpGet("/{unresolved_url}")]
-        public IActionResult RedirectToResolvedURL(String unresolved_url)
-        {
-            // redirect user to resolved URL
-            ResolvedURL resolvedURL = _lg.ResolveURL(unresolved_url);
-            return Redirect(resolvedURL.resolved_url);
         }
     }
 }

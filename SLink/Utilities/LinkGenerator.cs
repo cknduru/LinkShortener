@@ -5,11 +5,11 @@ using SLink.Model;
 
 namespace SLink.Utilities
 {
-    public class LinkGenerator
+    public static class LinkGenerator
     {
         static readonly List<ResolvedURL> _fakedb = new List<ResolvedURL>();
 
-        ResolvedURL GenerateRandomURL(String resolvedUrl)
+        public static ResolvedURL GenerateRandomURL(String resolvedUrl)
         {
             // begin with server address
             String randomUrl = "";
@@ -24,7 +24,7 @@ namespace SLink.Utilities
             return new ResolvedURL(randomUrl, Constants.SERVER_ADDRESS + randomUrl, resolvedUrl);
         }
 
-        public ResolvedURL ResolveURL(String unresolved_url)
+        public static ResolvedURL ResolveURL(String unresolved_url)
         {
             foreach(var u in _fakedb)
             {
@@ -38,7 +38,7 @@ namespace SLink.Utilities
             throw new System.ArgumentException("Random URL was not valid");
         }
 
-        public ResolvedURL AddURL(String url)
+        public static ResolvedURL AddURL(String url)
         {
             ResolvedURL resolvedUrl = GenerateRandomURL(url);
             _fakedb.Add(resolvedUrl);

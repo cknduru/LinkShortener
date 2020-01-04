@@ -3,14 +3,37 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
-
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <h1>testpage</h1>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>LinkShortener</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="~/Views/MainPage/shorten.css" rel="stylesheet">
 </head>
+
 <body>
+
+    <div class="container">
+        <center>
+            <h2 class="form-signin-heading">Welcome to Link Shortener!</h2>
+        </center>
+        <form class="form-signin">
+            <label for="inputLink" class="sr-only">Link</label>
+            <input type="link" id="inputLink" class="form-control" placeholder="Link" required autofocus>
+            <label for="outputLink" class="sr-only">Shortened link</label>
+            <input type="password" id="outputLink" class="form-control" readonly="readonly" placeholder="Shortened link" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Shorten</button>
+        </form>
+
+    </div> <!-- /container -->
 </body>
 </html>
